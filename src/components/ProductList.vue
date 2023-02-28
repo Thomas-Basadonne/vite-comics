@@ -95,18 +95,20 @@ export default {
 <template>
   <section>
     <div>
-      <figure>
+      <figure class="jumbo">
         <img src="../assets/img/jumbotron.jpg" alt="" />
-        <figcaption>CURRENT SERIES</figcaption>
+        <span>CURRENT SERIES</span>
       </figure>
     </div>
-    <div class="container d-flex">
-      <ul>
-        <li v-for="card in filmCards">
-          <img :src="card.thumb" alt="" />
-          <span>{{ card.series }}</span>
-        </li>
-      </ul>
+    <div class="container">
+      <div class="card" v-for="card in filmCards">
+        <img class="img-thumb" :src="card.thumb" alt="" />
+        <span>{{ card.series }}</span>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <button class="d-flex">LOAD MORE</button>
     </div>
   </section>
 </template>
@@ -114,6 +116,62 @@ export default {
 section {
   background-color: #1c1c1c;
   color: aliceblue;
-  min-height: 400px; //debug
+}
+
+.jumbo {
+  min-height: 400px;
+  img {
+    z-index: 1;
+    position: relative;
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+  span {
+    position: absolute;
+    z-index: 2;
+    background-color: #0282f9;
+    left: 18%;
+    bottom: 41%;
+    padding: 10px 15px;
+    font-weight: 700;
+  }
+}
+.card {
+  height: 300px;
+  width: 300px;
+  flex-wrap: wrap;
+}
+.img-thumb {
+  height: 250px;
+  width: 250px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 150px;
+  .card {
+    width: 15%;
+    padding: 3rem 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 40px;
+  right: 47%;
+  border: none;
+  background-color: #0282f9;
+  color: aliceblue;
+  padding: 10px 15px;
 }
 </style>
